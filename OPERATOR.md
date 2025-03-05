@@ -164,13 +164,20 @@ And that's how you can install, set up and configure a kubernetes cluster for de
 
 **If we made a mistake creating our deployment, we could delete it and recreate it**
 
-delete pod by name
+delete deployment by name
 ```console
-delete pod <pod_name>
+kubectl delete deployment <deployment_name>
 ```
 **if we made a mistake creating our service, we could delete it and recreate it**
 
 delete service by name
 ```console
-delete service <service_name>
+kubectl delete service <service_name>
+```
+
+**if we have an issue with our pod(s), we could delete it and recreate it**
+
+delete pod by name
+```console
+kubectl delete pod <pod_name>
 ```
