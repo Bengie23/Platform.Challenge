@@ -39,5 +39,5 @@ terraform apply
 ## Result
 
 If everything went well, we should be able to see something like this
-![alt text](/screenshots/image.png)
+![alt text](/terraform/screenshots//image.png)
 
