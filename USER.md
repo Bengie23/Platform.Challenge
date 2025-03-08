@@ -15,7 +15,7 @@ kubectl get ns
  ```
 
  We get:
- ![alt text](image.png)
+ ![alt text](./screenshots/user/image.png)
 
  **Purpose**
 

@@ -45,7 +45,7 @@ kubectl get pods -A
  ```
 
  A list of *running* **pods** will demonstrate that minikube and kubectl are working as expected, and it should look like this:
- ![alt text](image-1.png)
+ ![alt text](./screenshots/operator/image-1.png)
 
 ### Creating and applying a deployment
 In order to start executing kubectl commands, we are gonna need a placeholder for manifests and configuration.
@@ -98,7 +98,7 @@ kubectl get pods -A
  ```
 
 It should look like this: (now including a new pod deploying the image specified in our deployment yaml file)
-![alt text](screenshots/image-2.png)
+![alt text](screenshots/operator/image-2.png)
 
 **Valudate image logs**
 
@@ -109,7 +109,7 @@ kubectl logs helloer-deployment-785d597d49-4wc5z
  ```
 
 And it should look like this:
-![alt text](screenshots/image-3.png)
+![alt text](screenshots/operator/image-3.png)
 
 **Note:** Since the image we are using comes from a NetCore API, the logs shown in previous image represent the classic initialization logs for that technology.
 
@@ -122,14 +122,14 @@ to validate this command, we need to check our services
 ```console
 kubectl get services
 ```
-![alt text](screenshots/image-4.png)
+![alt text](screenshots/operator/image-4.png)
 **Note:** If we check this details, we will find an external-IP column that appears to be *pending*. This is expected, becase we are exposing from the inside, but up to this point we have not asked **minikube** to allow this bridge communication, let's do that now.
 
 From a new terminal run:
 ```console
 minikube tunnel
 ```
-![alt text](screenshots/image-5.png)
+![alt text](screenshots/operator/image-5.png)
 **Note:** It's primordial to run this in a new terminal, since minikube will only enable the tunnel for as long as the terminal window lives.
 
 **Validating our service**
@@ -141,7 +141,7 @@ kubectl get services
 ```
 
 Now we get:
-![alt text](screenshots/image-6.png)
+![alt text](screenshots/operator/image-6.png)
 External-Ip = 127.0.0.1 and 
 PORT = 8080 means http:localhost:8080, right?
 
@@ -156,7 +156,7 @@ we finally get
 Hola Mundo
 ```
 same results from the browser
-![alt text](screenshots/image-7.png)
+![alt text](screenshots/operator/image-7.png)
 
 And that's how you can install, set up and configure a kubernetes cluster for development purposes.
 
