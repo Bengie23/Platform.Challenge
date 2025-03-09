@@ -188,3 +188,56 @@ resource "kubernetes_deployment" "platform-helloer-deployment" {
         }
     }
 }
+
+# services
+
+resource "kubernetes_service" "exposure-service-mexico" {
+    metadata {
+        name    =   "helloer-service-mexico1"
+        namespace   =   kubernetes_namespace.namespace-for-mexico.metadata[0].name
+    }
+    spec {
+        selector = {
+            app     = "helloer"
+        }
+        port {
+            port            =   7070
+            target_port     =   8080
+        }
+        type = "LoadBalancer"
+    }
+}
+
+resource "kubernetes_service" "exposure-service-quebec" {
+    metadata {
+        name    =   "helloer-service-quebec1"
+        namespace   =   kubernetes_namespace.namespace-for-quebec.metadata[0].name
+    }
+    spec {
+        selector = {
+            app     = "helloer"
+        }
+        port {
+            port            =   8080
+            target_port     =   8080
+        }
+        type = "LoadBalancer"
+    }
+}
+
+resource "kubernetes_service" "exposure-service-montreal" {
+    metadata {
+        name    =   "helloer-service-montreal1"
+        namespace   =   kubernetes_namespace.namespace-for-montreal.metadata[0].name
+    }
+    spec {
+        selector = {
+            app     = "helloer"
+        }
+        port {
+            port            =   9090
+            target_port     =   8080
+        }
+        type = "LoadBalancer"
+    }
+}
