@@ -59,7 +59,7 @@ The RBAC implementation deployed within the existing terraform manifest describe
    It has [list, get] permissions against [pods, deployments] objects
 * lead-dev-role
 
-    It has [list, get, create, delete] permissions against [pods, deployments, services, secrets] objects
+    It has [list, get, create, delete, scale] permissions against [pods, deployments, services, secrets] objects
 
 
 For demo purposes, I have implemented the next bindings:
