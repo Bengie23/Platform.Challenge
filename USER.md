@@ -1,7 +1,7 @@
-# Interacting with the repository to create and manage their namespaces.
+# Interacting with the repository.
 
 ## Deployment Context
-Within our Terraform deployment we have created several objects, including: namespaces, roles, role bindings, deployments and services.
+Within our Terraform deployment we have created several objects, including: 
 
 ### Namespaces
 Namespaces created from terraform deployment:
@@ -18,9 +18,9 @@ kubectl get ns
  
  ![alt text](./screenshots/user/image.png)
 
- **Purpose**
+#### Purpose of multiple namespaces
 
-The purpose for those namespaces rely on the requirement of a software company that allocates software developers in 3 cities: Quebec, Montreal and Mexico.
+The requirement of a software company that allocates software developers in 3 cities: Quebec, Montreal and Mexico.
 When a developer is hired, depending on their role, they will have access to different namespaces, this will be described next.
 #### How to create a new namespace?
 **Using kubectl command**
@@ -49,7 +49,7 @@ terraform import kubernetes_namespace.example terraform-example-namespace
  ```
 
  **Note:** When using import, terraform accepts the request for a new namespace, affecting the terraform state, but it does not update the .tf manifest, this has to be done manually.
-### RBAC Implementation
+### RBAC Implementation (Roles, ClusterRoles, RoleBindings & ClusterRoleBindings)
 The RBAC implementation deployed within the existing terraform manifest described the next 3 roles:
 * junior-dev-role
     
@@ -72,8 +72,11 @@ In the same way, the current manifest describes 3 users:
 * Jamie (junior dev)
 * Ben (lead dev)
 
+#### RBAC Diagram
+
 Finally, the mix of namespaces + roles + bindings + users shoud correspond to this:
 ![kubernetes_challenge_diagram](https://github.com/user-attachments/assets/5c77ec34-6aeb-4306-bb2c-2b9f08abe77d)
+
 ### Deployments
 For every new namespace, we have created a deployment resource, specific to the corresponding namespace. In this case we are just using a simple environment variable to demonstrate the customization of these deployments.
 The Helloer application is a simple Hello World API, with a little customization: it relies on environment variables to determine the language of the system.
