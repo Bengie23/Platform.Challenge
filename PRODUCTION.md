@@ -4,7 +4,7 @@
 ### Replace user-specific RBAC with group-specific RBAC
 In the current version of our Terraform manifest we stablished user-role associations. This is intentional for simplified demo purposes, in a production environment, we should prioritize group-role associations.
 
-Group-role associations provide access to cluster resources depending on the groups a user belongs to. Those groups are not managed by Kubernetes itself, instead, they are managed by an external identity provider like Azure AD (now Azure Entra Id).
+Group-role associations provide access to cluster resources depending on the groups a user belongs to. Those groups are not managed by Kubernetes itself, instead, they are managed by an external identity provider like Azure AD (now Azure Entra Id) or Google Workspace.
 
 This implementation benefits from the best of 2 tools and allows kubernetes to extend its native RBAC configuration.
 
