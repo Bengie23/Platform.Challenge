@@ -144,38 +144,41 @@ resource "kubernetes_cluster_role_binding" "lead_dev_for_all_namespaces" {
     }
 }
 
-# Deployments per namespace
+locals  {
+    namespaces = {
+        (kubernetes_namespace.namespace-for-quebec.metadata[0].name) = {
+            DeveloperRole = "QuebecDev"
+        },
+        (kubernetes_namespace.namespace-for-montreal.metadata[0].name) = {
+            DeveloperRole = "MontrealDev"
+        },
+        (kubernetes_namespace.namespace-for-mexico.metadata[0].name) = {
+            DeveloperRole = "MexDev"
+        }
+    }
+}
 resource "kubernetes_deployment" "platform-helloer-deployment" {
-    for_each = toset([
-        kubernetes_namespace.namespace-for-quebec.metadata[0].name,
-        kubernetes_namespace.namespace-for-montreal.metadata[0].name,
-        kubernetes_namespace.namespace-for-mexico.metadata[0].name
-    ])
-
+    for_each = local.namespaces
     metadata {
         name    =   "platform-helloer-deployment"
-        namespace = each.value
+        namespace = each.key
         labels  =   {
             app =   "helloer"
         }
     }
-
     spec    {
         replicas    =   1
-
         selector {
             match_labels    =   {
                 app =   "helloer"
             }
         }
-
         template {
             metadata {
                 labels = {
                     app = "helloer"
                 }
             }
-
             spec {
                 container {
                     name    =   "helloer"
@@ -183,17 +186,19 @@ resource "kubernetes_deployment" "platform-helloer-deployment" {
                     port {
                         container_port = 80
                     }
+                    env {
+                        name     = "DeveloperRole"
+                        value    = each.value.DeveloperRole
+                    }
                 }
             }
         }
     }
 }
 
-# services
-
 resource "kubernetes_service" "exposure-service-mexico" {
     metadata {
-        name    =   "helloer-service-mexico1"
+        name    =   "helloer-service-mexico"
         namespace   =   kubernetes_namespace.namespace-for-mexico.metadata[0].name
     }
     spec {
@@ -210,7 +215,7 @@ resource "kubernetes_service" "exposure-service-mexico" {
 
 resource "kubernetes_service" "exposure-service-quebec" {
     metadata {
-        name    =   "helloer-service-quebec1"
+        name    =   "helloer-service-quebec"
         namespace   =   kubernetes_namespace.namespace-for-quebec.metadata[0].name
     }
     spec {
@@ -224,10 +229,9 @@ resource "kubernetes_service" "exposure-service-quebec" {
         type = "LoadBalancer"
     }
 }
-
 resource "kubernetes_service" "exposure-service-montreal" {
     metadata {
-        name    =   "helloer-service-montreal1"
+        name    =   "helloer-service-montreal"
         namespace   =   kubernetes_namespace.namespace-for-montreal.metadata[0].name
     }
     spec {
@@ -241,3 +245,9 @@ resource "kubernetes_service" "exposure-service-montreal" {
         type = "LoadBalancer"
     }
 }
+
+
+
+
+
+
