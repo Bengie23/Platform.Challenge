@@ -14,6 +14,7 @@ The software this company builds has a strong dependency on an API, every single
 **Requirement:** Deploy this API, 3 times, one per office. The API uses the right language, depending on location.
 
 **Image:** https://hub.docker.com/repository/docker/benswengineer/helloer/general
+*helloer is a little hello world api*
 
  Additionally, the developers working for the software company follow a management hierarchy, which includes:
 * Junior developers:
