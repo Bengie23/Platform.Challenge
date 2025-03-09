@@ -73,6 +73,6 @@ In the same way, the current manifest describes 3 users:
 * Ben (lead dev)
 
 Finally, the mix of namespaces + roles + bindings + users shoud correspond to this:
-
+![kubernetes_challenge_diagram](https://github.com/user-attachments/assets/5c77ec34-6aeb-4306-bb2c-2b9f08abe77d)
 ### Deployments
 
