@@ -111,7 +111,7 @@ resource "kubernetes_horizontal_pod_autoscaler" "example" {
     }
 }
  ```
- **Note:** This terraform definition is provided for informational purposes, I do not recommend to use it.
+ **Note:** This terraform definition is provided for informational purposes, Adapt and test it before production use.
 
  ### Kubernetes Vertical Pod Autoscaler
  It's also a native Terraform resource that automatically adjusts the CPU and memory requests for your pod based on usage.
@@ -137,7 +137,7 @@ resource "kubernetes_horizontal_pod_autoscaler" "example" {
 }
  ```
 
-  **Note:** This terraform definition is provided for informational purposes, I do not recommend to use it.
+  **Note:** This terraform definition is provided for informational purposes, Adapt and test it before production use.
 
   ### Kubectl scripting
   As described in [How to scale using replicas](#replicas) we can use kubectl scripting to scale pods, updating the replicas property by executing the scale command.
@@ -159,7 +159,7 @@ resource "null_resource" "scale_deployment" {
 }
  ```
 
-  **Note:** This terraform definition is provided for informational purposes, I do not recommend to use it.
+  **Note:** This terraform definition is provided for informational purposes, Adapt and test it before production use.
 
   ## Other tools to explore
   * Argocd
