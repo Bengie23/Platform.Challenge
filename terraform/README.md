@@ -22,7 +22,11 @@ terraform -help
 
 
 ## Navigate to terraform path
+## Init
 
+```console
+terraform init
+ ```
 ## Deploy
 
 ```console
