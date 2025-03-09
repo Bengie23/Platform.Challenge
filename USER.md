@@ -1,7 +1,7 @@
 # Interacting with the repository to create and manage their namespaces.
 
 ## Deployment Context
-Within our Terraform deployment we have created several objects, including: namespaces, roles, role bindings and deployments.
+Within our Terraform deployment we have created several objects, including: namespaces, roles, role bindings, deployments and services.
 
 ### Namespaces
 Namespaces created from terraform deployment:
@@ -75,4 +75,16 @@ In the same way, the current manifest describes 3 users:
 Finally, the mix of namespaces + roles + bindings + users shoud correspond to this:
 ![kubernetes_challenge_diagram](https://github.com/user-attachments/assets/5c77ec34-6aeb-4306-bb2c-2b9f08abe77d)
 ### Deployments
+For every new namespace, we have created a deployment resource, specific to the corresponding namespace. In this case we are just using a simple environment variable to demonstrate the customization of these deployments.
+The Helloer application is a simple Hello World API, with a little customization: it relies on environment variables to determine the language of the system.
 
+For Quebec namespace, the application should return: `Salute, le monde`
+
+For Montreal namespace, the application should return: `Hello World`
+
+For Mexico namespace, the application should return `Hola Mundo`
+
+### Services
+In the same wey, for every new namespace, we have created a service resource, specific to the corresponding namespace. This is needed to expose the services behind each pod, for each namespace.
+
+**Note:** Considering we are running our terraform locally, and not against a cloud provider, the execution of a `minikube tunnel` command, is required to allow the host to access deployed application's endpoints.
