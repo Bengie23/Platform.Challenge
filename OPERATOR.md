@@ -36,7 +36,7 @@ brew install minikube
  ```console
 minikube start
  ```
-![alt text](screenshots/image.png)
+![alt text](screenshots/operator/image.png)
 
 **Note:** Minikube's job at this point is limited to fire up the cluster, once it's started we are now able to start running kubectl commands.
 
