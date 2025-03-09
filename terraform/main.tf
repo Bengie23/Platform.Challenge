@@ -143,3 +143,48 @@ resource "kubernetes_cluster_role_binding" "lead_dev_for_all_namespaces" {
         name    =   "Ben"
     }
 }
+
+# Deployments per namespace
+resource "kubernetes_deployment" "platform-helloer-deployment" {
+    for_each = toset([
+        kubernetes_namespace.namespace-for-quebec.metadata[0].name,
+        kubernetes_namespace.namespace-for-montreal.metadata[0].name,
+        kubernetes_namespace.namespace-for-mexico.metadata[0].name
+    ])
+
+    metadata {
+        name    =   "platform-helloer-deployment"
+        namespace = each.value
+        labels  =   {
+            app =   "helloer"
+        }
+    }
+
+    spec    {
+        replicas    =   1
+
+        selector {
+            match_labels    =   {
+                app =   "helloer"
+            }
+        }
+
+        template {
+            metadata {
+                labels = {
+                    app = "helloer"
+                }
+            }
+
+            spec {
+                container {
+                    name    =   "helloer"
+                    image   =   "benswengineer/helloer"
+                    port {
+                        container_port = 80
+                    }
+                }
+            }
+        }
+    }
+}
