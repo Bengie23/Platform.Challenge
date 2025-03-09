@@ -65,7 +65,7 @@ resource "kubernetes_cluster_role"  "lead-dev-role"   {
     rule {
         api_groups  =   [""]
         resources   =   ["pods", "deployments", "services", "secrets"]
-        verbs       =   ["list", "get", "create", "delete"]
+        verbs       =   ["list", "get", "create", "delete", "scale"]
     }
 }
 
