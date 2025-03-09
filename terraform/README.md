@@ -32,6 +32,7 @@ terraform init
 ```console
 terraform plan
  ```
+**Note:** Verify minikube tunnel is running in another terminal window.
 
  and
 
