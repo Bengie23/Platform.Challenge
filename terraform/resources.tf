@@ -58,9 +58,9 @@ resource "kubernetes_cluster_role"  "lead-dev-role"   {
 
 # bind user "Max" as senior dev to montreal namespace
 
-resource "kubernetes_role_binding" "senior_devs_for_montreal" {
+resource "kubernetes_role_binding" "senior-devs-for-montreal" {
     metadata    {
-        name        =   "senior_devs_for_montreal"
+        name        =   "senior-devs-for-montreal"
         namespace   =   kubernetes_namespace.namespace-for-montreal.metadata[0].name
     }
     role_ref    {
@@ -78,9 +78,9 @@ resource "kubernetes_role_binding" "senior_devs_for_montreal" {
 
 # bind user "Max" as senior dev to mexico namespace 
 
-resource "kubernetes_role_binding" "senior_devs_for_mexico" {
+resource "kubernetes_role_binding" "senior-devs-for-mexico" {
     metadata    {
-        name        =   "senior_devs_for_mexico"
+        name        =   "senior-devs-for-mexico"
         namespace   =   kubernetes_namespace.namespace-for-mexico.metadata[0].name
     }
     role_ref    {
@@ -98,9 +98,9 @@ resource "kubernetes_role_binding" "senior_devs_for_mexico" {
 
 # bind user "Jamie" as junior dev to quebec namespace
 
-resource "kubernetes_role_binding" "junior_devs_for_quebec" {
+resource "kubernetes_role_binding" "junior-devs-for-quebec" {
     metadata    {
-        name        =   "junior_devs_for_quebec"
+        name        =   "junior-devs-for-quebec"
         namespace   =   kubernetes_namespace.namespace-for-quebec.metadata[0].name
     }
     role_ref    {
@@ -118,9 +118,9 @@ resource "kubernetes_role_binding" "junior_devs_for_quebec" {
 
 # Bind user "Ben" as lead dev to all namespaces
 
-resource "kubernetes_cluster_role_binding" "lead_dev_for_all_namespaces" {
+resource "kubernetes_cluster_role_binding" "lead-dev-for-all-namespaces" {
     metadata    {
-        name    =   "lead_dev_for_all_namespaces"
+        name    =   "lead-dev-for-all-namespaces"
     }
 
     role_ref    {
